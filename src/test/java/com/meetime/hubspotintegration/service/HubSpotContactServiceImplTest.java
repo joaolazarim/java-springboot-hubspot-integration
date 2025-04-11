@@ -27,16 +27,16 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 
-public class HubSpotContactServiceTest {
+public class HubSpotContactServiceImplTest {
 
-    private HubSpotContactService hubSpotContactService;
+    private HubSpotContactServiceImpl hubSpotContactService;
     private RestTemplate restTemplate;
 
     @BeforeEach
     public void setup() {
         HubSpotProperties hubSpotProperties = HubSpotPropertiesBuilder.build();
         restTemplate = mock(RestTemplate.class);
-        hubSpotContactService = new HubSpotContactService(restTemplate, hubSpotProperties);
+        hubSpotContactService = new HubSpotContactServiceImpl(restTemplate, hubSpotProperties);
     }
 
     @Test

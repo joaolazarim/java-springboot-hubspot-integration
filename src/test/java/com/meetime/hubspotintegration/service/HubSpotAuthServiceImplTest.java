@@ -19,16 +19,16 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class HubSpotAuthServiceTest {
+public class HubSpotAuthServiceImplTest {
 
     private RestTemplate restTemplate;
-    private HubSpotAuthService hubSpotAuthService;
+    private HubSpotAuthServiceImpl hubSpotAuthService;
 
     @BeforeEach
     public void setup() {
         HubSpotProperties hubSpotProperties = HubSpotPropertiesBuilder.build();
         restTemplate = mock(RestTemplate.class);
-        hubSpotAuthService = new HubSpotAuthService(hubSpotProperties, restTemplate);
+        hubSpotAuthService = new HubSpotAuthServiceImpl(hubSpotProperties, restTemplate);
     }
 
     @Test
@@ -46,7 +46,7 @@ public class HubSpotAuthServiceTest {
     public void testGetAuthorizationUrl_Failure() {
         HubSpotProperties invalidProperties = HubSpotPropertiesBuilder.build();
         invalidProperties.setAuthorizationUri(null);
-        hubSpotAuthService = new HubSpotAuthService(invalidProperties, restTemplate);
+        hubSpotAuthService = new HubSpotAuthServiceImpl(invalidProperties, restTemplate);
 
         assertThrows(HubSpotAuthenticationException.class, () -> {
             hubSpotAuthService.getAuthorizationUrl("mockState");
