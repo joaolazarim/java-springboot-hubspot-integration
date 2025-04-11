@@ -1,6 +1,5 @@
 package com.meetime.hubspotintegration.builder;
 
-import com.meetime.hubspotintegration.config.HubSpotProperties;
 import com.meetime.hubspotintegration.dto.TokenResponseDTO;
 
 public class TokenResponseDTOBuilder {

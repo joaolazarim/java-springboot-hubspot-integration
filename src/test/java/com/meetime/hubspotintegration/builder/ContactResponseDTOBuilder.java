@@ -1,6 +1,5 @@
 package com.meetime.hubspotintegration.builder;
 
-import com.meetime.hubspotintegration.dto.ContactDTO;
 import com.meetime.hubspotintegration.dto.ContactResponseDTO;
 
 import java.util.HashMap;
