@@ -3,6 +3,7 @@ package com.meetime.hubspotintegration.service;
 import com.meetime.hubspotintegration.config.HubSpotProperties;
 import com.meetime.hubspotintegration.dto.ContactDTO;
 import com.meetime.hubspotintegration.dto.ContactResponseDTO;
+import com.meetime.hubspotintegration.enums.ErrorMessageEnum;
 import com.meetime.hubspotintegration.exception.HubSpotIntegrationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,8 +43,8 @@ public class HubSpotContactService {
 
             return responseEntity.getBody();
         } catch (Exception e) {
-            logger.error("Error creating contact in HubSpot: {}", e.getMessage());
-            throw new HubSpotIntegrationException("Error creating contact in HubSpot", e);
+            logger.error(ErrorMessageEnum.ERROR_CREATING_CONTACT.getMessage(), e.getMessage());
+            throw new HubSpotIntegrationException(ErrorMessageEnum.ERROR_CREATING_CONTACT.getMessage(), e);
         }
     }
 }
