@@ -29,8 +29,8 @@ Você consegue acessar a collection do Postman para fazer chamadas, tanto local 
 ## Pré-Requisitos
 
 - Conta de desenvolvedor no HubSpot com um aplicativo configurado.
-- Docker instalado (caso deseje rodar via contêiner).
-- (Opcional) Java e Maven instalados para rodar localmente fora do contêiner.
+- Docker instalado (caso deseje rodar via container).
+- (Opcional) Java e Maven instalados para rodar localmente fora do container.
 
 ---
 
@@ -68,7 +68,7 @@ HUBSPOT_REDIRECT_URI=http://localhost:8080/auth/callback
 docker build -t hubspot-integration:latest .
 ```
 
-2. **Execução do Contêiner**  
+2. **Execução do Container**  
    Rode a aplicação com:
 
 ```
