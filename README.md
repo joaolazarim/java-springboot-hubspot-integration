@@ -4,6 +4,12 @@ Este projeto é uma API REST em Java com Spring Boot que integra com a API do Hu
 
 ---
 
+## Documentação Técnica
+
+Para mais detalhes sobre as escolhas de bibliotecas, decisões de arquitetura e possíveis melhorias futuras, consulte a [Documentação Técnica](DOCUMENTATION.md).
+
+---
+
 ## API na Nuvem
 
 A API já está disponível e rodando na nuvem, com a URL:
