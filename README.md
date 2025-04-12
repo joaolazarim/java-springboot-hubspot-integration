@@ -16,6 +16,8 @@ A API já está disponível e rodando na nuvem, com a URL:
 
 [https://java-springboot-hubspot-integration.onrender.com](https://java-springboot-hubspot-integration.onrender.com)
 
+Você pode visualizar o status da API [aqui](https://stats.uptimerobot.com/dwr9thieHK)
+
 ---
 
 ## Collection do Postman
