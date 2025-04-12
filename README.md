@@ -30,7 +30,7 @@ Você consegue acessar a collection do Postman para fazer chamadas, tanto local 
 
 - Conta de desenvolvedor no HubSpot com um aplicativo configurado.
 - Docker instalado (caso deseje rodar via container).
-- (Opcional) Java e Maven instalados para rodar localmente fora do container.
+- (Opcional) Java 21 e Maven instalados para rodar localmente fora do container.
 
 ---
 
