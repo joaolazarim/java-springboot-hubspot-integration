@@ -20,7 +20,7 @@ A API já está disponível e rodando na nuvem, com a URL:
 
 ## Collection do Postman
 
-Você consegue acessar a collection do Postman para fazer chamadas, tanto local quanto na nuvem, [Aqui](src/main/resources/postman/collections/HubSpotIntegration.postman_collection.json)!
+Você consegue acessar a collection do Postman para fazer chamadas, tanto local quanto na nuvem, [clicando aqui](src/main/resources/postman/collections/HubSpotIntegration.postman_collection.json)!
 
 ---
 
