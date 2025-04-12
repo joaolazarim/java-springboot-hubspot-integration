@@ -1,0 +1,203 @@
+{
+	"info": {
+		"_postman_id": "952471b0-97df-45ed-8f4e-ab7ef66c1fba",
+		"name": "HubSpot Integration",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18092805"
+	},
+	"item": [
+		{
+			"name": "local",
+			"item": [
+				{
+					"name": "Get auth url",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/auth/url",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"url"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create contact",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "CJ2blZDiMhIHAAEAQAAAARipx9YXIPGt4yUota6JBTIU6sLtxNg0VJv_iSX8nqidpJOLpPw6MAAAAEEAAAAAAAAAAAAAAAAAgAAAAAAAAAAAACAAAAAAAOABAAAAAAAAAAAAAAAQAkIUxybZIBi25MU5bvj-wXMr26Uw_6BKA25hMVIAWgBgAGjxreMlcAA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"properties\": {\n        \"email\": \"john@doe.com\",\n        \"lastname\": \"John\",\n        \"firstname\": \"Doe\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/contacts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Webhook",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"appId\": 10639157,\n        \"eventId\": 100,\n        \"subscriptionId\": 3442089,\n        \"portalId\": 49648261,\n        \"occurredAt\": 1744311835599,\n        \"subscriptionType\": \"contact.creation\",\n        \"attemptNumber\": 0,\n        \"objectId\": 123,\n        \"changeSource\": \"CRM\",\n        \"changeFlag\": \"NEW\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/webhook/contacts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"webhook",
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cloud",
+			"item": [
+				{
+					"name": "Get auth url",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://java-springboot-hubspot-integration.onrender.com/auth/url",
+							"protocol": "https",
+							"host": [
+								"java-springboot-hubspot-integration",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"auth",
+								"url"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create contact",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "CNPinKriMhIHAAEAQAAAARipx9YXIPGt4yUota6JBTIU4cH0EAq5z3L0nai0UcS4E50VRsY6MAAAAEEAAAAAAAAAAAAAAAAAgAAAAAAAAAAAACAAAAAAAOABAAAAAAAAAAAAAAAQAkIUpfKPPzsgsuiqDO_bKazK_v_8iPBKA25hMVIAWgBgAGjxreMlcAA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"properties\": {\n        \"email\": \"john@doe.com\",\n        \"lastname\": \"John\",\n        \"firstname\": \"Doe\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://java-springboot-hubspot-integration.onrender.com/contacts",
+							"protocol": "https",
+							"host": [
+								"java-springboot-hubspot-integration",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Webhook",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"appId\": 10639157,\n        \"eventId\": 100,\n        \"subscriptionId\": 3442089,\n        \"portalId\": 49648261,\n        \"occurredAt\": 1744311835599,\n        \"subscriptionType\": \"contact.creation\",\n        \"attemptNumber\": 0,\n        \"objectId\": 123,\n        \"changeSource\": \"CRM\",\n        \"changeFlag\": \"NEW\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://java-springboot-hubspot-integration.onrender.com/webhook/contacts",
+							"protocol": "https",
+							"host": [
+								"java-springboot-hubspot-integration",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"webhook",
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
