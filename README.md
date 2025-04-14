@@ -146,7 +146,7 @@ Endpoint que recebe notificações de criação de contatos (ou outros eventos c
 ---
 
 ## Testes
-- Os testes de unidade se encontram no diretório src/test/java.
+- Os testes unitários se encontram no diretório src/test/java.
 - Para executá-los via Maven: `mvn clean test`
 
 ## Observações
