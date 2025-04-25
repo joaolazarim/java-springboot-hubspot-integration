@@ -16,19 +16,21 @@ A API já está disponível e rodando na nuvem, com a URL:
 
 [https://java-springboot-hubspot-integration.onrender.com](https://java-springboot-hubspot-integration.onrender.com)
 
+Você pode visualizar o status da API [aqui](https://stats.uptimerobot.com/dwr9thieHK)
+
 ---
 
 ## Collection do Postman
 
-Você consegue acessar a collection do Postman para fazer chamadas, tanto local quanto na nuvem, [Aqui](src/main/resources/postman/collections/HubSpotIntegration.postman_collection.json)!
+Você consegue acessar a collection do Postman para fazer chamadas, tanto local quanto na nuvem, [clicando aqui](src/main/resources/postman/collections/HubSpotIntegration.postman_collection.json)!
 
 ---
 
 ## Pré-Requisitos
 
 - Conta de desenvolvedor no HubSpot com um aplicativo configurado.
-- Docker instalado (caso deseje rodar via contêiner).
-- (Opcional) Java e Maven instalados para rodar localmente fora do contêiner.
+- Docker instalado (caso deseje rodar via container).
+- (Opcional) Java 21 e Maven instalados para rodar localmente fora do container.
 
 ---
 
@@ -66,7 +68,7 @@ HUBSPOT_REDIRECT_URI=http://localhost:8080/auth/callback
 docker build -t hubspot-integration:latest .
 ```
 
-2. **Execução do Contêiner**  
+2. **Execução do Container**  
    Rode a aplicação com:
 
 ```
@@ -144,7 +146,7 @@ Endpoint que recebe notificações de criação de contatos (ou outros eventos c
 ---
 
 ## Testes
-- Os testes de unidade se encontram no diretório src/test/java.
+- Os testes unitários se encontram no diretório src/test/java.
 - Para executá-los via Maven: `mvn clean test`
 
 ## Observações
