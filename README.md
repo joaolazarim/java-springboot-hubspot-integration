@@ -4,6 +4,12 @@ Este projeto é uma API REST em Java com Spring Boot que integra com a API do Hu
 
 ---
 
+## Changelog
+
+Todos os registros de mudanças da aplicação se encontram no [Changelog](CHANGELOG.md).
+
+---
+
 ## Documentação Técnica
 
 Para mais detalhes sobre as escolhas de bibliotecas, decisões de arquitetura e possíveis melhorias futuras, consulte a [Documentação Técnica](DOCUMENTATION.md).
