@@ -8,8 +8,8 @@ Todas as mudanças relevantes do projeto serão adicionadas à este documento.
   - **v1**: Hash SHA-256 do `clientSecret + body`
   - **v2**: Hash SHA-256 do `clientSecret + método HTTP + URI + body`
   - **v3**: HMAC-SHA256 + Base64 do `método HTTP + URI decodificada + body + timestamp`, rejeitando timestamps acima de 5 minutos
-- Adicionado `WebhookSignatureValidator` tratando todas as versões internamente
-- Atualizado `WebhookController` para aceitar uma String com o JSON bruto e delegar a validação da assinatura
+- Adicionado [`WebhookSignatureValidator`](src/main/java/com/meetime/hubspotintegration/util/WebhookSignatureValidator.java) tratando todas as versões internamente
+- Atualizado [`WebhookController`](src/main/java/com/meetime/hubspotintegration/controller/WebhookController.java) para aceitar uma String com o JSON bruto e delegar a validação da assinatura
 
 ## [1.0.0] - 12/04/2025
 ### Adicionado
