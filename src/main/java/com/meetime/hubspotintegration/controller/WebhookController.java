@@ -1,5 +1,6 @@
 package com.meetime.hubspotintegration.controller;
 
+import com.meetime.hubspotintegration.enums.ErrorMessageEnum;
 import com.meetime.hubspotintegration.util.WebhookSignatureValidator;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
@@ -26,10 +27,10 @@ public class WebhookController {
     @PostMapping("/contacts")
     public ResponseEntity<String> handleContactWebhook(HttpServletRequest request, @RequestBody String rawBody) {
         if (!validator.isValid(request, rawBody)) {
-            logger.error("Invalid HubSpot signature");
+            logger.error(ErrorMessageEnum.INVALID_HUBSPOT_SIGNATURE.getMessage());
             return ResponseEntity
                     .status(HttpStatus.UNAUTHORIZED)
-                    .body("Invalid HubSpot signature");
+                    .body(ErrorMessageEnum.INVALID_HUBSPOT_SIGNATURE.getMessage());
         }
 
         logger.info("Valid HubSpot signature");

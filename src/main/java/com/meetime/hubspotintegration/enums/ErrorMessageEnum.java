@@ -13,7 +13,9 @@ public enum ErrorMessageEnum {
     ERROR_EXCHANGING_CODE_FOR_TOKEN("Could not exchange code for token"),
     INVALID_STATE("Invalid state parameter"),
     ERROR_SIGNING_STATE("Error signing state parameter"),
-    ERROR_CREATING_CONTACT("Error creating contact");
+    ERROR_CREATING_CONTACT("Error creating contact"),
+    SIGNATURE_TIMESTAMP_TOO_OLD("Signature timestamp is too old"),
+    INVALID_HUBSPOT_SIGNATURE("Invalid HubSpot signature");
 
     private final String message;
 }
