@@ -10,3 +10,7 @@ hubspot:
   token-uri: "https://api.hubapi.com/oauth/v1/token"
   authorization-uri: "https://app.hubspot.com/oauth/authorize"
   api-base-uri: "https://api.hubapi.com"
+
+logging:
+  level:
+    com.meetime.hubspotintegration.util.WebhookSignatureValidator: DEBUG

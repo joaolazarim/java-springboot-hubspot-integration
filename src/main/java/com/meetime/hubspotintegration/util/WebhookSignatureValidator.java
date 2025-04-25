@@ -2,6 +2,8 @@ package com.meetime.hubspotintegration.util;
 
 import com.meetime.hubspotintegration.config.HubSpotProperties;
 import jakarta.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.Mac;
@@ -14,6 +16,8 @@ import java.util.Base64;
 
 @Component
 public class WebhookSignatureValidator {
+
+    private static final Logger logger = LoggerFactory.getLogger(WebhookSignatureValidator.class);
 
     private static final String HMAC_ALGO = "HmacSHA256";
     private final String clientSecret;
@@ -31,6 +35,14 @@ public class WebhookSignatureValidator {
         String method = req.getMethod();
         String uri = buildFullUri(req);
 
+        logger.info("Signature verification URI: {}", uri);
+        logger.info("Signature version: {}", version);
+        logger.info("Signature V1 or V2: {}", sigV1or2);
+        logger.info("Signature V3: {}", sigV3);
+        logger.info("Request method: {}", method);
+        logger.info("Request body: {}", rawBody);
+        logger.info("Request timestamp: {}", timestamp);
+
         if ("v3".equalsIgnoreCase(version)) {
             return validateV3(sigV3, timestamp, method, uri, rawBody);
         }
@@ -43,6 +55,12 @@ public class WebhookSignatureValidator {
 
     private boolean validateV1(String signature, String body) {
         String expected = sha256Hex(clientSecret + body);
+
+        logger.info("Signature V1: {}", signature);
+        logger.info("Signature V1 bytes: {}", signature.getBytes());
+        logger.info("Expected signature V1: {}", expected);
+        logger.info("Expected V1 bytes: {}", expected.getBytes());
+
         return MessageDigest.isEqual(expected.getBytes(), signature.getBytes());
     }
 
@@ -52,6 +70,12 @@ public class WebhookSignatureValidator {
                                String body) {
         String source   = clientSecret + method + uri + body;
         String expected = sha256Hex(source);
+
+        logger.info("Signature V2: {}", signature);
+        logger.info("Signature V2 bytes: {}", signature.getBytes());
+        logger.info("Expected signature V2: {}", expected);
+        logger.info("Expected V2 bytes: {}", expected.getBytes());
+
         return MessageDigest.isEqual(expected.getBytes(), signature.getBytes());
     }
 
@@ -59,17 +83,24 @@ public class WebhookSignatureValidator {
         long ts = Long.parseLong(timestamp);
 
         if (Math.abs(Instant.now().getEpochSecond() - ts) > 5 * 60) {
+            logger.error("Timestamp is too old or too far in the future");
             return false;
         }
 
         String decodedUri = URLDecoder.decode(uri, StandardCharsets.UTF_8);
-        String source     = method + decodedUri + body + timestamp;
+        String source = method + decodedUri + body + timestamp;
 
         try {
             Mac mac = Mac.getInstance(HMAC_ALGO);
             mac.init(new SecretKeySpec(clientSecret.getBytes(), HMAC_ALGO));
             byte[] raw = mac.doFinal(source.getBytes(StandardCharsets.UTF_8));
             String expected = Base64.getEncoder().encodeToString(raw);
+
+            logger.info("Signature V3: {}", signature);
+            logger.info("Signature V3 bytes: {}", signature.getBytes());
+            logger.info("Expected signature V3: {}", expected);
+            logger.info("Expected V3 bytes: {}", expected.getBytes());
+
             return MessageDigest.isEqual(expected.getBytes(), signature.getBytes());
         } catch (Exception e) {
             return false;
