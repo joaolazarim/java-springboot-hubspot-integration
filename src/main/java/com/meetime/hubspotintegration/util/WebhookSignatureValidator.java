@@ -1,7 +1,5 @@
 package com.meetime.hubspotintegration.util;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.meetime.hubspotintegration.config.HubSpotProperties;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
@@ -13,23 +11,18 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.time.Instant;
 import java.util.Base64;
-import java.util.List;
-import java.util.Map;
 
 @Component
 public class WebhookSignatureValidator {
 
     private static final String HMAC_ALGO = "HmacSHA256";
     private final String clientSecret;
-    private final ObjectMapper objectMapper;
 
-    public WebhookSignatureValidator(HubSpotProperties props,
-                                     ObjectMapper objectMapper) {
+    public WebhookSignatureValidator(HubSpotProperties props) {
         this.clientSecret = props.getClientSecret();
-        this.objectMapper = objectMapper;
     }
 
-    public boolean isValid(HttpServletRequest req, List<Map<String,Object>> payload) {
+    public boolean isValid(HttpServletRequest req, String rawBody) {
 
         String version = req.getHeader("X-HubSpot-Signature-Version");
         String sigV1or2  = req.getHeader("X-HubSpot-Signature");
@@ -38,22 +31,14 @@ public class WebhookSignatureValidator {
         String method = req.getMethod();
         String uri = buildFullUri(req);
 
-        String body;
-
-        try {
-            body = objectMapper.writeValueAsString(payload);
-        } catch (JsonProcessingException e) {
-            return false;
-        }
-
         if ("v3".equalsIgnoreCase(version)) {
-            return validateV3(sigV3, timestamp, method, uri, body);
+            return validateV3(sigV3, timestamp, method, uri, rawBody);
         }
         if ("v2".equalsIgnoreCase(version)) {
-            return validateV2(sigV1or2, method, uri, body);
+            return validateV2(sigV1or2, method, uri, rawBody);
         }
 
-        return validateV1(sigV1or2, body);
+        return validateV1(sigV1or2, rawBody);
     }
 
     private boolean validateV1(String signature, String body) {

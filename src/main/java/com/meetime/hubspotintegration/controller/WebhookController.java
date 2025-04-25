@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.Map;
-
 @RestController
 @RequestMapping("/webhook")
 public class WebhookController {
@@ -27,8 +24,8 @@ public class WebhookController {
     }
 
     @PostMapping("/contacts")
-    public ResponseEntity<String> handleContactWebhook(HttpServletRequest request, @RequestBody List<Map<String,Object>> payload) {
-        if (!validator.isValid(request, payload)) {
+    public ResponseEntity<String> handleContactWebhook(HttpServletRequest request, @RequestBody String rawBody) {
+        if (!validator.isValid(request, rawBody)) {
             logger.error("Invalid HubSpot signature");
             return ResponseEntity
                     .status(HttpStatus.UNAUTHORIZED)
@@ -36,7 +33,7 @@ public class WebhookController {
         }
 
         logger.info("Valid HubSpot signature");
-        logger.info("Received contact webhook request: {}", payload);
+        logger.info("Received contact webhook request: {}", rawBody);
 
         return ResponseEntity.ok("Webhook received successfully");
     }
