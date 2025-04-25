@@ -107,13 +107,14 @@ public class WebhookSignatureValidator {
         }
     }
 
-    private String sha256Hex(String str) {
+    private String sha256Hex(String data) {
         try {
-            Mac mac = Mac.getInstance(HMAC_ALGO);
-            mac.init(new SecretKeySpec(clientSecret.getBytes(), HMAC_ALGO));
-            byte[] h = mac.doFinal(str.getBytes(StandardCharsets.UTF_8));
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] digest = md.digest(data.getBytes(StandardCharsets.UTF_8));
             StringBuilder sb = new StringBuilder();
-            for (byte b : h) sb.append(String.format("%02x", b));
+            for (byte b : digest) {
+                sb.append(String.format("%02x", b));
+            }
             return sb.toString();
         } catch (Exception e) {
             throw new RuntimeException(e);
